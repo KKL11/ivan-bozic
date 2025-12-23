@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sretan Božić ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(180deg, #0b2b4a, #0f5132);
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-top: 30vh;
+      font-size: 2.2rem;
+      padding: 0 20px;
+    }
+
+    .heart {
+      color: #ffb3c6;
+    }
+
+    .button {
+      margin-top: 40px;
+      padding: 15px 28px;
+      font-size: 1.1rem;
+      background: #c1121f;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 1em;
+      user-select: none;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sretan Božić<br />
+    mojem najboljem Ivanu <span class="heart">❤️</span>
+  </h1>
+
+  <a class="button" href="ivan_bozic.pdf" target="_blank">
+    🎁 Otvori poklon
+  </a>
+
+  <script>
+    const snowflakes = 40;
+    for (let i = 0; i < snowflakes; i++) {
+      const snow = document.createElement('div');
+      snow.className = 'snowflake';
+      snow.innerHTML = '❄';
+      snow.style.left = Math.random() * 100 + 'vw';
+      snow.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      snow.style.fontSize = (Math.random() * 10 + 10) + 'px';
+      document.body.appendChild(snow);
+    }
+  </script>
+
+</body>
+</html>
