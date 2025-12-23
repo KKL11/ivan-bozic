@@ -1,81 +1,113 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sretan Božić ❤️</title>
+  <meta charset="UTF-8">
+  <title>Božićna Čestitka</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      background: linear-gradient(180deg, #0b2b4a, #0f5132);
-      color: white;
-      text-align: center;
+      padding: 0;
+      background: linear-gradient(to bottom, #004080, #80c0ff);
       overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      color: white;
     }
 
     h1 {
-      margin-top: 30vh;
-      font-size: 2.2rem;
-      padding: 0 20px;
-    }
-
-    .heart {
-      color: #ffb3c6;
+      margin-top: 50px;
+      font-size: 48px;
+      text-shadow: 2px 2px 8px #000;
     }
 
     .button {
-      margin-top: 40px;
-      padding: 15px 28px;
-      font-size: 1.1rem;
-      background: #c1121f;
+      background-color: #ff3366;
       color: white;
+      font-size: 24px;
+      padding: 15px 30px;
       border: none;
-      border-radius: 30px;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 40px;
+      animation: glow 1.5s infinite alternate;
       text-decoration: none;
       display: inline-block;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
-    .snowflake {
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px #ff3366; }
+      50% { box-shadow: 0 0 20px #ff6699; }
+      100% { box-shadow: 0 0 5px #ff3366; }
+    }
+
+    canvas {
       position: fixed;
-      top: -10px;
-      color: white;
-      font-size: 1em;
-      user-select: none;
-      animation: fall linear infinite;
-      opacity: 0.8;
+      top: 0;
+      left: 0;
+      z-index: 0;
     }
 
-    @keyframes fall {
-      to {
-        transform: translateY(110vh);
-      }
+    .content {
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
-
-  <h1>Sretan Božić<br />
-    mojem najboljem Ivanu <span class="heart">❤️</span>
-  </h1>
-
-  <a class="button" href="bozic_ivan.pdf" target="_blank">
-    🎁 Otvori poklon
-  </a>
+  <canvas id="snowCanvas"></canvas>
+  <div class="content">
+    <h1>🎄 Sretan Božić! ❄️</h1>
+    <a class="button" href="bozic_ivan.pdf" target="_blank">🎁 Otvori poklon</a>
+  </div>
 
   <script>
-    const snowflakes = 40;
-    for (let i = 0; i < snowflakes; i++) {
-      const snow = document.createElement('div');
-      snow.className = 'snowflake';
-      snow.innerHTML = '❄';
-      snow.style.left = Math.random() * 100 + 'vw';
-      snow.style.animationDuration = (Math.random() * 5 + 5) + 's';
-      snow.style.fontSize = (Math.random() * 10 + 10) + 'px';
-      document.body.appendChild(snow);
-    }
-  </script>
+    // SNIEG
+    const canvas = document.getElementById("snowCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
+    let snowflakes = [];
+    for(let i=0;i<120;i++){
+      snowflakes.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*4+1,
+        d: Math.random()*1
+      });
+    }
+
+    function drawSnow(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      for(let i=0;i<snowflakes.length;i++){
+        let f = snowflakes[i];
+        ctx.moveTo(f.x, f.y);
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI*2, true);
+      }
+      ctx.fill();
+      moveSnow();
+    }
+
+    function moveSnow(){
+      for(let i=0;i<snowflakes.length;i++){
+        let f = snowflakes[i];
+        f.y += Math.pow(f.d+1, 2);
+        if(f.y > canvas.height){
+          f.y = 0;
+          f.x = Math.random()*canvas.width;
+        }
+      }
+    }
+
+    setInterval(drawSnow, 25);
+
+    // OPTIONAL: zvonce zvuk na klik (ako dodaš zvonce.mp3 u repozitorij)
+    /*
+    const bell = new Audio("zvonce.mp3");
+    document.querySelector(".button").addEventListener("click", ()=> bell.play());
+    */
+  </script>
 </body>
 </html>
