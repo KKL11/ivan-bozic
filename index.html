@@ -104,13 +104,19 @@
 
     setInterval(drawSnow, 25);
   </script>
-  <script>
-  const music = new Audio("bozicna_pjesma.mp3");
-  music.volume = 0.6;
+ <script>
+  let music;
 
   function openGift() {
-    music.play(); // glazba krene ODMAH
-    window.open("bozic_ivan.pdf", "_blank"); // PDF se otvori
+    if (!music) {
+      music = new Audio("bozicna_pjesma.mp3");
+      music.volume = 0.6;
+      music.play();
+    } else {
+      music.play();
+    }
+
+    window.open("ivan_bozic.pdf", "_blank");
   }
 </script>
 </body>
