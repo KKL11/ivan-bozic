@@ -56,9 +56,8 @@
 <body>
   <canvas id="snowCanvas"></canvas>
   <div class="content">
-    <h1>🎄 Sretan Božić mojem najboljem Ivanu! ❄️</h1>
-   <button class="button" onclick="openGift()">🎁 Otvori poklon</button>
-   <audio id="music" src="bozicna_pjesma.mp3"></audio>
+    <h1>🎄 Sretan Božić! ❄️</h1>
+    <a class="button" href="ivan_bozic.pdf" target="_blank">🎁 Otvori poklon</a>
   </div>
 
   <script>
@@ -103,18 +102,13 @@
     }
 
     setInterval(drawSnow, 25);
+
+    // OPTIONAL: zvonce zvuk na klik (ako dodaš zvonce.mp3 u repozitorij)
+    /*
+    const bell = new Audio("zvonce.mp3");
+    document.querySelector(".button").addEventListener("click", ()=> bell.play());
+    */
   </script>
- <script>
-  <script>
-  function openGift() {
-    const music = document.getElementById("music");
-    music.volume = 0.6;
-    music.play();
-
-    window.open("bozic_ivan.pdf", "_blank");
-  }
-</script>
-
-</script>
 </body>
 </html>
+
