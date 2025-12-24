@@ -103,11 +103,14 @@
 
     setInterval(drawSnow, 25);
 
-    // OPTIONAL: zvonce zvuk na klik (ako dodaš zvonce.mp3 u repozitorij)
-    /*
-    const bell = new Audio("zvonce.mp3");
-    document.querySelector(".button").addEventListener("click", ()=> bell.play());
-    */
+    <script>
+  const music = new Audio("bozicna_pjesma.mp3");
+  music.volume = 0.6;
+
+  document.querySelector(".button").addEventListener("click", () => {
+    music.play();
+  });
+</script>
   </script>
 </body>
 </html>
